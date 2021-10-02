@@ -11,6 +11,7 @@
     v-bind:todo="item"
     v-bind:key="item.id"
     @to-do-is-done="toDoIsDone(item, $event)"
+    @remove-to-do="removeToDo(item)"
   />
 </template>
 
@@ -32,15 +33,17 @@ export default {
   methods: {
     addToDo: function () {
       this.todos.push({
-        id: this.todos.length,
+        id: this.todos.length + 1,
         text: this.newTodo,
         done: false,
       });
-      console.log("todos", this.todos);
       this.newTodo = "";
     },
     toDoIsDone: function (toDo, doneStatus) {
       this.todos[toDo.id - 1].done = doneStatus;
+    },
+    removeToDo(toDo) {
+      this.todos.splice(toDo.id - 1, 1);
     },
   },
   components: {

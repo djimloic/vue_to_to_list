@@ -6,6 +6,7 @@
       @click="$emit('toDoIsDone', !todoData.done)"
     />
     {{ todoData.text }}
+    <button v-on:click="$emit('removeToDo')">Remove</button>
   </div>
 </template>
 
